@@ -1,6 +1,7 @@
 from turtle import Screen
 import time
 from snake import Snake
+from food import Food
 
 REFRESH_RATE_IN_SECONDS = 0.2
 SCREEN_WIDTH = 600
@@ -15,6 +16,9 @@ screen.tracer(0)
 
 # create a new snake object instance
 snake = Snake()
+
+# create food object instance
+food = Food()
 
 # start screen listener, and listen for arraw keys
 screen.listen()
