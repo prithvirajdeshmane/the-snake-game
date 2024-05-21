@@ -4,10 +4,12 @@ from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
 
-REFRESH_RATE_IN_SECONDS = 0.15
+REFRESH_RATE_IN_SECONDS = 0.2
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 BOUNDARY_LIMIT = 290
+INTERVAL_LEVEL_SPEED_INCREASE = 3
+FACTOR_SPEED_INCREASE = 0.9
 
 # Crete the screen
 screen = Screen()
@@ -44,6 +46,13 @@ def end_game():
     is_game_on = False
 
 
+def update_game_speed():
+    global REFRESH_RATE_IN_SECONDS
+    if scoreboard.score > 0 and \
+            scoreboard.score % INTERVAL_LEVEL_SPEED_INCREASE == 0:
+        REFRESH_RATE_IN_SECONDS *= FACTOR_SPEED_INCREASE
+
+
 while is_game_on:
     screen.update()
     scoreboard.show_score()
@@ -55,6 +64,7 @@ while is_game_on:
         food.refresh_location()
         scoreboard.update_score()
         snake.extend()
+        update_game_speed()
 
     # detect collision with wall
     if snake.head.xcor() < -1 * BOUNDARY_LIMIT \

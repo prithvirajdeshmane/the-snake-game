@@ -1,10 +1,11 @@
 from turtle import Turtle
 
-SCORE_FONT = ("Arial", 12, 'bold')
 SCOREBOARD_ALIGNMENT = "center"
 SCOREBOARD_X = 0
 SCOREBOARD_Y = 250
-SCOREBOARD_COLOR = "white"
+SCOREBOARD_COLOR = "dark violet"
+SCORE_FONT = ("Arial", 12, 'bold')
+GAME_OVER_COLOR = "red"
 
 
 class Scoreboard(Turtle):
@@ -20,6 +21,7 @@ class Scoreboard(Turtle):
 
     def show_score(self):
         self.clear()
+        self.color(SCOREBOARD_COLOR)
         self.write(f"Score: {self.score}", False,
                    align=SCOREBOARD_ALIGNMENT, font=SCORE_FONT)
 
@@ -28,4 +30,5 @@ class Scoreboard(Turtle):
 
     def game_over(self):
         self.goto(0, 0)
+        self.color(GAME_OVER_COLOR)
         self.write("GAME OVER!", False, align=SCOREBOARD_ALIGNMENT, font=SCORE_FONT)

@@ -11,7 +11,7 @@ class Food(Turtle):  # inherit from the Turtle class
 
         # default circle size will be 20x20, so change it to be 10x10
         self.shapesize(stretch_len=0.5, stretch_wid=0.5)
-        self.color("blue")
+        self.color("orange")
         self.speed("fastest")
 
         self.refresh_location()
