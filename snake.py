@@ -60,3 +60,4 @@ class Snake:
         """ Turns the snake RIGHT (East), as long as current heading is not LEFT """
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+

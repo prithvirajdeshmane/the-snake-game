@@ -7,6 +7,7 @@ from scoreboard import Scoreboard
 REFRESH_RATE_IN_SECONDS = 0.2
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
+BOUNDARY_LIMIT = 280
 
 # Crete the screen
 screen = Screen()
@@ -42,9 +43,16 @@ while is_game_on:
 
     # detect collision with food
     if snake.head.distance(food) < 15:
-        print("NOM NOM NOM")
         food.refresh_location()
         scoreboard.update_score()
+
+    # detect collision with wall
+    if snake.head.xcor() < -1 * BOUNDARY_LIMIT \
+            or snake.head.xcor() > BOUNDARY_LIMIT \
+            or snake.head.ycor() < -1 * BOUNDARY_LIMIT \
+            or snake.head.ycor() > BOUNDARY_LIMIT:
+        scoreboard.game_over()
+        is_game_on = False
 
 # Close the screen
 screen.exitonclick()

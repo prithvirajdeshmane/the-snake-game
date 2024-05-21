@@ -1,23 +1,31 @@
 from turtle import Turtle
 
 SCORE_FONT = ("Arial", 12, 'bold')
+SCOREBOARD_ALIGNMENT = "center"
+SCOREBOARD_X = 0
+SCOREBOARD_Y = 250
+SCOREBOARD_COLOR = "white"
 
 
 class Scoreboard(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.color("white")
+        self.color(SCOREBOARD_COLOR)
         self.penup()
         self.speed("fastest")
         self.hideturtle()
-        self.goto(0, 250)
+        self.goto(x=SCOREBOARD_X, y=SCOREBOARD_Y)
         self.score = 0
 
     def show_score(self):
         self.clear()
         self.write(f"Score: {self.score}", False,
-                   align="center", font=SCORE_FONT)
+                   align=SCOREBOARD_ALIGNMENT, font=SCORE_FONT)
 
     def update_score(self):
         self.score += 1
+
+    def game_over(self):
+        self.goto(0, 0)
+        self.write("GAME OVER!", False, align=SCOREBOARD_ALIGNMENT, font=SCORE_FONT)
