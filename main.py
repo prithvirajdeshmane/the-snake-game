@@ -2,6 +2,7 @@ from turtle import Screen
 import time
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 
 REFRESH_RATE_IN_SECONDS = 0.2
 SCREEN_WIDTH = 600
@@ -20,6 +21,9 @@ snake = Snake()
 # create food object instance
 food = Food()
 
+# create scoreboard instance
+scoreboard = Scoreboard()
+
 # start screen listener, and listen for arraw keys
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -32,6 +36,7 @@ is_game_on = True
 
 while is_game_on:
     screen.update()
+    scoreboard.show_score()
     time.sleep(REFRESH_RATE_IN_SECONDS)
     snake.move()
 
@@ -39,6 +44,7 @@ while is_game_on:
     if snake.head.distance(food) < 15:
         print("NOM NOM NOM")
         food.refresh_location()
+        scoreboard.update_score()
 
 # Close the screen
 screen.exitonclick()
