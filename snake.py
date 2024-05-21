@@ -54,6 +54,7 @@ class Snake:
             self.head.setheading(RIGHT)
 
     def append_segment(self, position):
+        """ Adds a new segment to the snake """
         t = Turtle(shape="square")
         t.color("white")
         t.penup()
@@ -61,4 +62,5 @@ class Snake:
         self.snake_segments.append(t)
 
     def extend(self):
+        """ extends the tail by 1 segment """
         self.append_segment(self.snake_segments[-1].pos())

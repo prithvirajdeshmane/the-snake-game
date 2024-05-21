@@ -7,7 +7,7 @@ from scoreboard import Scoreboard
 REFRESH_RATE_IN_SECONDS = 0.2
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
-BOUNDARY_LIMIT = 280
+BOUNDARY_LIMIT = 290
 
 # Crete the screen
 screen = Screen()
