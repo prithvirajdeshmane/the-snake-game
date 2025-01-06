@@ -4,7 +4,8 @@ from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
 
-REFRESH_RATE_IN_SECONDS = 0.2
+STARTING_REFRESH_RATE = 0.2
+REFRESH_RATE_IN_SECONDS = STARTING_REFRESH_RATE
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 BOUNDARY_LIMIT = 290
@@ -27,7 +28,7 @@ food = Food()
 # create scoreboard instance
 scoreboard = Scoreboard()
 
-# start screen listener, and listen for arraw keys
+# start screen listener, and listen for arrow keys
 screen.listen()
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
@@ -44,6 +45,12 @@ def end_game():
     scoreboard.game_over()
     global is_game_on
     is_game_on = False
+
+def reset_game():
+    scoreboard.reset()
+    snake.reset()
+    global REFRESH_RATE_IN_SECONDS
+    REFRESH_RATE_IN_SECONDS = STARTING_REFRESH_RATE
 
 
 def update_game_speed():
@@ -71,12 +78,14 @@ while is_game_on:
             or snake.head.xcor() > BOUNDARY_LIMIT \
             or snake.head.ycor() < -1 * BOUNDARY_LIMIT \
             or snake.head.ycor() > BOUNDARY_LIMIT:
-        end_game()
+        # end_game()
+        reset_game()
 
     # detect collision with tail
     for segment in snake.snake_segments[1:]:
         if snake.head.distance(segment) < 10:
-            end_game()
+            # end_game()
+            reset_game()
 
 # Close the screen
 screen.exitonclick()

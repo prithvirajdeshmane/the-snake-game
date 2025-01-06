@@ -64,3 +64,16 @@ class Snake:
     def extend(self):
         """ extends the tail by 1 segment """
         self.append_segment(self.snake_segments[-1].pos())
+
+    # reset the snake to starting settings
+    def reset(self):
+        # remove all existing segments of snake from screen
+        for seg in self.snake_segments:
+            seg.goto(-400, -400)
+
+        # clear all segments from the snake object
+        self.snake_segments.clear()
+
+        #create a new snake with initial settings
+        self.create_snake()
+        self.head = self.snake_segments[0]
